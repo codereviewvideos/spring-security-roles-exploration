@@ -32,9 +32,22 @@ public class SpringSecurityConfiguration {
     public UserDetailsService userDetailsService() {
         User.UserBuilder builder = User.withDefaultPasswordEncoder();
 
-        UserDetails authenticatedUser = builder.username("authenticated").password("authenticated").build();
-        UserDetails authorisedUser = builder.username("authorised").password("authorised").roles("AUTHORISED").build();
-        UserDetails adminUser = builder.username("admin").password("admin").roles("ADMIN").build();
+        UserDetails authenticatedUser = builder
+                .username("authenticated")
+                .password("authenticated")
+                .build();
+
+        UserDetails authorisedUser = builder
+                .username("authorised")
+                .password("authorised")
+                .roles("AUTHORISED")
+                .build();
+
+        UserDetails adminUser = builder
+                .username("admin")
+                .password("admin")
+                .roles("ADMIN")
+                .build();
 
         return new InMemoryUserDetailsManager(authenticatedUser, authorisedUser, adminUser);
     }
